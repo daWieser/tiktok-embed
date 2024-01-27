@@ -20,5 +20,6 @@
             'website_tiktok_embed/static/src/snippets/s_tiktok_embed/options.js',],
     },
     'license': 'OPL-1',
-    'price': 10
+    'price': 10,
+    'images': ['website_tiktok_embed/static/description/thumbnail.png']
 }
