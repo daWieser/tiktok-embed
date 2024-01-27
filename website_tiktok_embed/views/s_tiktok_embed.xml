@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<template id="s_tiktok_embed" name="TikTok video embed">
+    <div class="s_tiktok_embed" data-tiktok-embed="https://www.tiktok.com/@mynfutebol/video/7327184434392747270">
+        <div class="o_tiktok_container o_not_editable container">
+            <!-- The iframe will be added here by the public widget. -->
+        </div>
+       <script async="" src="https://www.tiktok.com/embed.js"/>
+    </div>
+</template>
+
+
+<template id="s_tiktok_embed_options" inherit_id="website.snippet_options">
+    <xpath expr="." position="inside">
+        <div data-js="TiktokEmbed" data-selector=".s_tiktok_embed" data-drop-in="div">
+            <we-alert class="mt-2">
+                Your TikTok needs to be public to be shown
+            </we-alert>
+            <we-input string="TikTok Link"
+                      class="o_we_large"
+                      placeholder="https://www.tiktok.com/"
+                      data-set-tiktok-embed=""
+                      data-no-preview="true"/>
+        </div>
+    </xpath>
+</template>
+
+<record id="website_tiktok_embed.s_tiktok_embed_000_js" model="ir.asset">
+    <field name="name">TikTok Embed 000 JS</field>
+    <field name="bundle">web.assets_frontend</field>
+    <field name="path">website_tiktok_embed/static/src/snippets/s_tiktok_embed/000.js</field>
+</record>
+
+<record id="website_tiktok_embed.s_tiktok_embed_000_scss" model="ir.asset">
+    <field name="name">TikTok Embed 000 SCSS</field>
+    <field name="bundle">web.assets_frontend</field>
+    <field name="path">website_tiktok_embed/static/src/snippets/s_tiktok_embed/000.scss</field>
+</record>
+
+</odoo>

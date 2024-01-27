@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="snippets" inherit_id="website.snippets" name="Tiktok Snippets">
+        <xpath expr="//*[@id='default_snippets']" position="after">
+            <t id="snippet_ticktok">
+                <div id="snippet_ticktok" class="o_panel">
+                    <div class="o_panel_header">TikTok</div>
+                    <div class="o_panel_body">
+                        <t t-snippet="website_tiktok_embed.s_tiktok_embed"
+                           t-thumbnail="/website_tiktok_embed/static/src/img/tiktok.png">
+                            <keywords>TikTok</keywords>
+                        </t>
+                    </div>
+                </div>
+            </t>
+        </xpath>
+    </template>
+</odoo>
