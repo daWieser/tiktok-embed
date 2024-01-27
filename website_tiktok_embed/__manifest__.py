@@ -21,5 +21,5 @@
     },
     'license': 'OPL-1',
     'price': 10,
-    'images': ['website_tiktok_embed/static/description/thumbnail.png']
+    'images': ['images/thumbnail.png']
 }
