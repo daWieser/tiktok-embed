@@ -19,6 +19,6 @@
         'website.assets_wysiwyg': [
             'website_tiktok_embed/static/src/snippets/s_tiktok_embed/options.js',],
     },
-    'license': 'GPL-2',
+    'license': 'GPL-3',
     'images': ['images/thumbnail.png']
 }
