@@ -17,10 +17,8 @@
             'website_tiktok_embed/static/src/snippets/s_tiktok_embed/000.js',
             'website_tiktok_embed/static/src/snippets/s_tiktok_embed/000.scss'],
         'website.assets_wysiwyg': [
-            'website_tiktok_embed/static/src/snippets/s_tiktok_embed/options.js', ],
+            'website_tiktok_embed/static/src/snippets/s_tiktok_embed/options.js',],
     },
-    'license': 'OPL-1',
-    'price': 10,
-    'images': ['images/thumbnail.png'],
-    'website': 'https://www.wieser-engineering.xyz/'
+    'license': 'GPL-2',
+    'images': ['images/thumbnail.png']
 }
