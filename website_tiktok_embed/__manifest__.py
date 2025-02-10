@@ -2,7 +2,8 @@
     'name': "TikTok embed",
     'version': '1.0',
     'depends': ['website', 'web_editor'],
-    'author': "Benjamin Wieser",
+    'author': "Vorstieg Software FlexCo",
+    'website': "https://www.vorstieg.eu",
     'category': 'Website/Website',
     'description': """
     This extention allowes easy embedding of TikTok videos
