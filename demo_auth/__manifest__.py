@@ -8,5 +8,6 @@
     'description': """
     This module allows users to log in with a demo user without a username or password
     """,
-    'license': 'GPL-3'
+    'license': 'GPL-3',
+    'images': ['images/thumbnail.png']
 }
