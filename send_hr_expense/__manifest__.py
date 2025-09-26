@@ -1,7 +1,7 @@
 {
-    'name': ' Send HR Expense to Contact',
+    'name': 'Send HR Expense to Contact',
     'version': '0.1',
-    'summary': 'Adds a button to send an approved expense report to a contact via mail',
+    'summary': 'Adds a button to send an approved expense report to a contact via mail, with an option to convert image attachments to PDF.',
     'author': 'Vorstieg Software FlexCo',
     'website': 'https://www.vorstieg.eu',
     'category': 'Human Resources',

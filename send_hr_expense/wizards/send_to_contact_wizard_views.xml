@@ -9,6 +9,7 @@
                     <group>
                         <field name="expense_id" invisible="1"/>
                         <field name="partner_id"/>
+                        <field name="convert_to_pdf"/>
                     </group>
                     <footer>
                         <button name="action_send_email" string="Send" type="object" class="btn-primary"/>
