@@ -7,8 +7,7 @@
             <field name="inherit_id" ref="account.view_move_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//header" position="inside">
-                    <button name="action_send_bill_to_contact" string="Send to Contact" type="object" class="oe_highlight"
-                            invisible="['|', ('state', '!=', 'posted'), ('move_type', '!=', 'in_invoice')]"/>
+                    <button name="action_send_bill_to_contact" string="Send" type="object" class="oe_highlight"/>
                 </xpath>
             </field>
         </record>
