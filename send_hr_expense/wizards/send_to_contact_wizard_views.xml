@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="send_to_contact_wizard_form_view" model="ir.ui.view">
+            <field name="name">send.to.contact.wizard.form</field>
+            <field name="model">send.to.contact.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Send">
+                    <group>
+                        <field name="expense_id" invisible="1"/>
+                        <field name="partner_id"/>
+                    </group>
+                    <footer>
+                        <button name="action_send_email" string="Send" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>
