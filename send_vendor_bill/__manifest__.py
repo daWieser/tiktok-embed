@@ -14,4 +14,5 @@
     ],
     'installable': True,
     'license': 'LGPL-3',
+    'images': ['images/thumbnail.png']
 }
