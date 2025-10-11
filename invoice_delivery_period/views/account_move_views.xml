@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_move_form_inherit_delivery_period" model="ir.ui.view">
+            <field name="name">account.move.form.inherit.delivery.period</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@id='other_tab']/group" position="inside">
+                    <group string="Delivery Period">
+                        <field name="delivery_period_start_date"/>
+                        <field name="delivery_period_end_date"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
