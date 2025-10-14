@@ -13,6 +13,7 @@
     ],
     'installable': True,
     'license': 'LGPL-3',
+    'images': ['images/thumbnail.png'],
     'i18n': {
         'de': 'i18n/de.po',
     },
