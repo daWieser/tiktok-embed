@@ -2,40 +2,23 @@
 <odoo>
 
 <template id="s_tiktok_embed" name="TikTok video embed">
-    <div class="s_tiktok_embed" data-tiktok-embed="https://www.tiktok.com/@mynfutebol/video/7327184434392747270">
-        <div class="o_tiktok_container o_not_editable container">
+    <div class="s_tiktok_embed o_snippet_drop_in_only" data-tiktok-embed="https://www.tiktok.com/@odoo/video/7552187645137407252">
+        <div class="o_tiktok_container">
+            <!-- Configuration UI: Visible ONLY in Edit Mode -->
+            <!-- We use an anchor tag because Odoo natively provides a Link Editor for it -->
+            <div class="text-center css_non_editable_mode_hidden mb-3 p-3 border border-info bg-light">
+                <i class="fa fa-tiktok fa-2x mb-2"/>
+                <h5>TikTok Setup</h5>
+                <p class="text-muted small">Click the button below to set the TikTok Video URL.</p>
+                <a href="https://www.tiktok.com/@odoo/video/7552187645137407252" 
+                   class="btn btn-primary o_tiktok_url_config">
+                   <i class="fa fa-link"/> Set Video URL
+                </a>
+            </div>
+            
             <!-- The iframe will be added here by the public widget. -->
         </div>
-       <script async="" src="https://www.tiktok.com/embed.js"/>
     </div>
 </template>
-
-
-<template id="s_tiktok_embed_options" inherit_id="website.snippet_options">
-    <xpath expr="." position="inside">
-        <div data-js="TiktokEmbed" data-selector=".s_tiktok_embed" data-drop-in="div">
-            <we-alert class="mt-2">
-                Your TikTok needs to be public to be shown
-            </we-alert>
-            <we-input string="TikTok Link"
-                      class="o_we_large"
-                      placeholder="https://www.tiktok.com/"
-                      data-set-tiktok-embed=""
-                      data-no-preview="true"/>
-        </div>
-    </xpath>
-</template>
-
-<record id="website_tiktok_embed.s_tiktok_embed_000_js" model="ir.asset">
-    <field name="name">TikTok Embed 000 JS</field>
-    <field name="bundle">web.assets_frontend</field>
-    <field name="path">website_tiktok_embed/static/src/snippets/s_tiktok_embed/000.js</field>
-</record>
-
-<record id="website_tiktok_embed.s_tiktok_embed_000_scss" model="ir.asset">
-    <field name="name">TikTok Embed 000 SCSS</field>
-    <field name="bundle">web.assets_frontend</field>
-    <field name="path">website_tiktok_embed/static/src/snippets/s_tiktok_embed/000.scss</field>
-</record>
 
 </odoo>
