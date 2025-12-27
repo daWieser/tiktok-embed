@@ -4,38 +4,51 @@ import publicWidget from "@web/legacy/js/public/public_widget";
 
 const TiktokEmbed = publicWidget.Widget.extend({
     selector: ".s_tiktok_embed",
-    disabledInEditableMode: false,
+    disabledInEditableMode: true,
 
-    /**
-     * @override
-     */
     start() {
         this.tiktokUrlStr = "https://www.tiktok.com/";
+        const container = this.el.querySelector(".o_tiktok_container");
+        const configLink = this.el.querySelector(".o_tiktok_url_config");
+        let videoUrl = "https://www.tiktok.com/@mynfutebol/video/7327184434392747270";
+
+        if (configLink && configLink.getAttribute("href") && configLink.getAttribute("href").includes("tiktok.com")) {
+            videoUrl = configLink.getAttribute("href");
+        } else if (this.el.dataset.tiktokEmbed) {
+            videoUrl = this.el.dataset.tiktokEmbed;
+        }
+
         const iframeEl = document.createElement("iframe");
-        this.el.querySelector(".o_tiktok_container").appendChild(iframeEl);
+        container.appendChild(iframeEl);
+
         iframeEl.setAttribute("scrolling", "no");
         iframeEl.sandbox = "allow-popups allow-popups-to-escape-sandbox allow-scripts allow-top-navigation allow-same-origin";
         iframeEl.classList.add("w-100");
         iframeEl.height = "725px";
-        // We have to setup the message listener before setting the src, because
-        // the iframe can send a message before this JS is fully loaded.
+
         this.__onMessage = this._onMessage.bind(this);
         window.addEventListener("message", this.__onMessage);
-        // We set the src now, we are ready to receive the message.
-        iframeEl.src = `https://www.tiktok.com/embed/v2/${this._getTikTokVideoIdFromUrl(this.el.dataset.tiktokEmbed)}`;
+
+        const videoId = this._getTikTokVideoIdFromUrl(videoUrl);
+        if (videoId) {
+            iframeEl.src = `https://www.tiktok.com/embed/v2/${videoId}`;
+        }
 
         return this._super(...arguments);
     },
 
     _getTikTokVideoIdFromUrl(url) {
-        const urlParameters = url.split(this.tiktokUrlStr)[1];
-        const dirtyVideoId = urlParameters.split("/")[2]
-        return dirtyVideoId.split("?")[0];
+        try {
+            if (!url.includes(this.tiktokUrlStr)) return null;
+            const urlParameters = url.split(this.tiktokUrlStr)[1];
+            const dirtyVideoId = urlParameters.split("/")[2]
+            return dirtyVideoId.split("?")[0];
+        } catch (e) {
+            console.error("TikTok Embed: Invalid URL", url, e);
+            return null;
+        }
     },
 
-    /**
-     * @override
-     */
     destroy() {
         const iframeEl = this.el.querySelector(".o_tiktok_container iframe");
         if (iframeEl) {
@@ -45,26 +58,9 @@ const TiktokEmbed = publicWidget.Widget.extend({
         this._super.apply(this, arguments);
     },
 
-    //--------------------------------------------------------------------------
-    // Private
-    //--------------------------------------------------------------------------
-
-    //--------------------------------------------------------------------------
-    // Handlers
-    //--------------------------------------------------------------------------
-
-    /**
-     * Called when a message is sent. Instagram sends us a message with the
-     * height of the iframe.
-     *
-     * @private
-     * @param {Event} ev
-     */
     _onMessage(ev) {
         const iframeEl = this.el.querySelector(".o_tiktok_container iframe");
         if (ev.origin !== "https://www.tiktok.com" || iframeEl.contentWindow !== ev.source) {
-            // It's not a message from Instagram or it's a message from another
-            // Instagram iframe.
             return;
         }
     },
