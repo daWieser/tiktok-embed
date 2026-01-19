@@ -1,3 +1,0 @@
-# Demo Auth
-This module allows a demo user to log into odoo, without providing a **username** or a **password**. For this app to work, you need to create a user with the login: "demo" and a password "demo". The user can than log in by calling the url https://your.database.url/web/demo_login
-This module basically disables authentication for this user, so only use if that is for sure what you want to do.
