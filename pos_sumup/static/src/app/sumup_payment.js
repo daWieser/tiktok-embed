@@ -15,7 +15,7 @@ export class PaymentSumup extends PaymentInterface {
 
     sendPaymentRequest(uuid) {
         super.sendPaymentRequest(uuid);
-        return this._sumup_pay(uuid);
+        return this._process_sumup_request(uuid);
     }
 
     sendPaymentCancel(order, uuid) {
@@ -65,6 +65,13 @@ export class PaymentSumup extends PaymentInterface {
         };
     }
 
+    _sumup_refund_data(line) {
+        return {
+            amount: Math.abs(line.amount),
+            transaction_id: line.transaction_id,
+        };
+    }
+
     _handle_sumup_error(error) {
         let msg = error.message;
         if (error.code === 'TIMEOUT') {
@@ -77,9 +84,13 @@ export class PaymentSumup extends PaymentInterface {
         this._show_error(_t("SumUp Error: %s", msg));
     }
 
-    _sumup_pay(uuid) {
+    _process_sumup_request(uuid) {
         var order = this.pos.getOrder();
         var line = order.payment_ids.find((paymentLine) => paymentLine.uuid === uuid);
+
+        if (order.isRefund) {
+            return this._sumup_refund(line);
+        }
 
         if (line.amount < 0) {
             this._show_error(_t("Cannot process transactions with negative amount."));
@@ -110,6 +121,33 @@ export class PaymentSumup extends PaymentInterface {
         });
     }
 
+    _sumup_refund(line) {
+        const transaction_id = line.transaction_id;
+        if (!transaction_id) {
+            this._show_error(_t("No original SumUp transaction is linked to this refund."));
+            line.setPaymentStatus("retry");
+            return Promise.resolve(false);
+        }
+
+        line.setPaymentStatus("waitingCard");
+        const data = this._sumup_refund_data(line);
+
+        return this.env.services.orm.silent
+            .call("pos.payment.method", "sumup_make_refund_request", [[this.payment_method_id.id], data])
+            .then((response) => {
+                if (response.error) {
+                    this._handle_sumup_error(response.error);
+                    line.setPaymentStatus("retry");
+                    return false;
+                }
+
+                line.transaction_id = response.transaction_id;
+                line.setPaymentStatus("done");
+                return true;
+            })
+            .catch(this._handle_odoo_connection_failure.bind(this));
+    }
+
     async _poll_for_status(uuid, client_transaction_id) {
         var line = this.pending_sumup_line();
         if (!line || line.uuid !== uuid) {
@@ -131,7 +169,7 @@ export class PaymentSumup extends PaymentInterface {
 
         if (status === 'SUCCESSFUL') {
             line.setPaymentStatus("done");
-            line.transaction_id = response.transaction_code || response.id;
+            line.transaction_id = response.id || response.transaction_code;
 
             // Card details for receipt
             if (response.card) {

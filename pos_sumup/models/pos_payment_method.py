@@ -3,7 +3,7 @@
 
 import logging
 from odoo import fields, models, _, api
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, AccessError
 
 _logger = logging.getLogger(__name__)
 
@@ -29,6 +29,17 @@ class PosPaymentMethod(models.Model):
             ('company_id', '=', self.env.company.id)
         ], limit=1)
         return provider
+
+    def _get_sumup_refunded_amount(self, transaction_id):
+        domain = [
+            ('payment_method_id', '=', self.id),
+            ('transaction_id', '=', transaction_id),
+            ('amount', '<', 0),
+            ('payment_status', '!=', 'cancelled'),
+            ('pos_order_id.state', '!=', 'cancel'),
+        ]
+        refunded_amount = sum(abs(amount) for amount in self.env['pos.payment'].search(domain).mapped('amount'))
+        return refunded_amount
 
     def proxy_sumup_request(self, data, operation=False):
         ''' Handles the request to the SumUp API.
@@ -75,6 +86,90 @@ class PosPaymentMethod(models.Model):
              endpoint = f"v0.1/merchants/{provider.sumup_merchant_code}/readers/{self.reader.terminal_id}/terminate"
              return provider.sumup_make_request(endpoint, method='POST')
         
+        return False
+
+    def sumup_make_refund_request(self, data):
+        self.ensure_one()
+        if not self.env.user.has_group('point_of_sale.group_pos_user'):
+            raise AccessError(_("Only 'group_pos_user' are allowed to send a SumUp refund request"))
+
+        provider = self._get_sumup_payment_provider()
+        if not provider:
+            return {'error': {'code': 'CONFIG_ERROR', 'message': _("SumUp provider is not configured.")}}
+
+        transaction_id = data.get('transaction_id')
+        amount = abs(float(data.get('amount', 0)))
+
+        if not transaction_id:
+            return {'error': {'code': 'MISSING_TRANSACTION', 'message': _("Missing original SumUp transaction.")}}
+        if amount <= 0:
+            return {'error': {'code': 'INVALID_AMOUNT', 'message': _("Refund amount must be greater than zero.")}}
+
+        transaction = self._get_sumup_transaction(provider, transaction_id)
+
+        if not transaction:
+            return {'error': {'code': 'TRANSACTION_NOT_FOUND', 'message': _("Original SumUp transaction was not found.")}}
+
+        if transaction.get('status') != 'SUCCESSFUL':
+            return {
+                'error': {
+                    'code': 'INVALID_TRANSACTION_STATUS',
+                    'message': _("Only successful SumUp transactions can be refunded."),
+                }
+            }
+
+        total_amount = transaction.get('amount')
+        if total_amount is None:
+            return {'error': {'code': 'INVALID_RESPONSE', 'message': _("SumUp did not return the transaction amount.")}}
+
+        refunded_amount = self._get_sumup_refunded_amount(transaction_id)
+        remaining_amount = max(total_amount - refunded_amount, 0)
+
+        if amount > remaining_amount:
+            return {
+                'error': {
+                    'code': 'REFUND_LIMIT_EXCEEDED',
+                    'message': _(
+                        "Refund amount exceeds the remaining refundable SumUp amount."
+                    ),
+                }
+            }
+
+        payload = {}
+        if amount < remaining_amount:
+            payload['amount'] = amount
+
+        response = provider.sumup_make_request(
+            f"v0.1/me/refund/{transaction_id}",
+            data=payload,
+        )
+        if response.get('error'):
+            return response
+
+        return {
+            'success': True,
+            'transaction_id': transaction['id'],
+            'amount': amount,
+            'remaining_amount': remaining_amount - amount,
+        }
+
+    def _get_sumup_transaction(self, provider, transaction_identifier):
+        search_params = [
+            {'id': transaction_identifier},
+            {'transaction_code': transaction_identifier},
+        ]
+        for params in search_params:
+            transaction = provider.sumup_make_request(
+                f"v2.1/merchants/{provider.sumup_merchant_code}/transactions",
+                method='GET',
+                params=params,
+            )
+            if transaction.get('error'):
+                continue
+            if transaction.get('items'):
+                transaction = transaction['items'][0]
+            if transaction.get('id'):
+                return transaction
         return False
 
     def action_update_readers(self):
