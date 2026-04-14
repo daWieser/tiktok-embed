@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_at_wareneingangsbuch_report_list" model="ir.ui.view">
+        <field name="name">l10n_at.wareneingangsbuch.report.list</field>
+        <field name="model">l10n_at.wareneingangsbuch.report</field>
+        <field name="arch" type="xml">
+            <list string="Wareneingangsbuch" create="0" edit="0" delete="0">
+                <field name="sequence_number" string="Lfd. Nr."/>
+                <field name="entry_date"/>
+                <field name="supplier_display"/>
+                <field name="goods_label"/>
+                <field name="gross_amount" sum="Total"/>
+                <field name="tax_amount" sum="Total"/>
+                <field name="net_amount" sum="Total"/>
+                <field name="invoice_reference"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_l10n_at_wareneingangsbuch_report_search" model="ir.ui.view">
+        <field name="name">l10n_at.wareneingangsbuch.report.search</field>
+        <field name="model">l10n_at.wareneingangsbuch.report</field>
+        <field name="arch" type="xml">
+            <search string="Wareneingangsbuch">
+                <field name="entry_date"/>
+                <field name="supplier_id"/>
+                <field name="goods_label"/>
+                <field name="invoice_reference"/>
+                <field name="product_id"/>
+                <field name="categ_id"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+
+                <filter string="This Month" name="current_month" domain="[('entry_date', '&gt;=', context_today().strftime('%Y-%m-01'))]"/>
+                <filter string="Group by Supplier" name="group_supplier" context="{'group_by': 'supplier_id'}"/>
+                <filter string="Group by Date" name="group_month" context="{'group_by': 'entry_date:month'}"/>
+                <filter string="Group by Goods" name="group_goods" context="{'group_by': 'goods_label'}"/>
+                <filter string="Group by Category" name="group_category" context="{'group_by': 'categ_id'}"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_l10n_at_wareneingangsbuch_report" model="ir.actions.act_window">
+        <field name="name">Wareneingangsbuch</field>
+        <field name="res_model">l10n_at.wareneingangsbuch.report</field>
+        <field name="view_mode">list</field>
+        <field name="search_view_id" ref="view_l10n_at_wareneingangsbuch_report_search"/>
+        <field name="context">{'search_default_group_month': 1}</field>
+    </record>
+
+    <menuitem
+        id="menu_l10n_at_wareneingangsbuch_report"
+        name="Wareneingangsbuch"
+        parent="account.menu_finance_reports"
+        action="action_l10n_at_wareneingangsbuch_report"
+        sequence="120"
+    />
+</odoo>
