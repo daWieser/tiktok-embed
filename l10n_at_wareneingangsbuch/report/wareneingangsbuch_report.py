@@ -27,7 +27,7 @@ class L10nAtWareneingangsbuchReport(models.Model):
     net_amount = fields.Monetary(string="Netto Betrag", readonly=True, currency_field="currency_id")
     tax_amount = fields.Monetary(string="Vorsteuer", readonly=True, currency_field="currency_id")
     invoice_reference = fields.Char(
-        string="Belegnummer der Einkaufsrechnung",
+        string="Einkaufsrechnung",
         readonly=True,
     )
     invoice_id = fields.Many2one("account.move", string="Einkaufsrechnung", readonly=True)

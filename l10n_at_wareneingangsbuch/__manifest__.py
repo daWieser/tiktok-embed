@@ -27,12 +27,6 @@ where a Wareneingangsbuch must be maintained.
         "views/product_template_views.xml",
         "views/wareneingangsbuch_report_views.xml",
     ],
-    "assets": {
-        "web.assets_backend": [
-            "l10n_at_wareneingangsbuch/static/src/js/invoice_link_field.js",
-            "l10n_at_wareneingangsbuch/static/src/xml/invoice_link_field.xml",
-        ],
-    },
     "images": [
         "static/description/icon.png",
     ],
