@@ -1,0 +1,179 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_at_wareneingangsbuch
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-14 00:00+0000\n"
+"PO-Revision-Date: 2026-04-14 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_at_wareneingangsbuch
+#: model:ir.model,name:l10n_at_wareneingangsbuch.model_l10n_at_wareneingangsbuch_report
+msgid "Austrian Wareneingangsbuch Report"
+msgstr "Österreichisches Wareneingangsbuch"
+
+#. module: l10n_at_wareneingangsbuch
+#: model:ir.actions.act_window,name:l10n_at_wareneingangsbuch.action_l10n_at_wareneingangsbuch_report
+#: model:ir.ui.menu,name:l10n_at_wareneingangsbuch.menu_l10n_at_wareneingangsbuch_report
+#: model_terms:ir.ui.view,arch_db:l10n_at_wareneingangsbuch.view_l10n_at_wareneingangsbuch_report_list
+#: model_terms:ir.ui.view,arch_db:l10n_at_wareneingangsbuch.view_l10n_at_wareneingangsbuch_report_pivot
+#: model_terms:ir.ui.view,arch_db:l10n_at_wareneingangsbuch.view_l10n_at_wareneingangsbuch_report_search
+#: model_terms:ir.ui.view,arch_db:l10n_at_wareneingangsbuch.product_category_form_view_wareneingangsbuch
+msgid "Wareneingangsbuch"
+msgstr "Wareneingangsbuch"
+
+#. module: l10n_at_wareneingangsbuch
+#: model:ir.model.fields,field_description:l10n_at_wareneingangsbuch.field_product_category__l10n_at_wareneingangsbuch_include
+msgid "Include in Wareneingangsbuch"
+msgstr "Im Wareneingangsbuch berücksichtigen"
+
+#. module: l10n_at_wareneingangsbuch
+#: model:ir.model.fields,help:l10n_at_wareneingangsbuch.field_product_category__l10n_at_wareneingangsbuch_include
+msgid "Enable this category for the Austrian Wareneingangsbuch report. Use it only for goods that should be tracked in the register."
+msgstr "Aktiviert diese Kategorie für das österreichische Wareneingangsbuch. Verwenden Sie dies nur für Waren, die in diesem Register erfasst werden sollen."
+
+#. module: l10n_at_wareneingangsbuch
+#: model:ir.model.fields,field_description:l10n_at_wareneingangsbuch.field_product_category__l10n_at_wareneingangsbuch_label
+#: model:ir.model.fields,field_description:l10n_at_wareneingangsbuch.field_product_template__l10n_at_wareneingangsbuch_label
+msgid "Wareneingangsbuch Label"
+msgstr "Wareneingangsbuch-Bezeichnung"
+
+#. module: l10n_at_wareneingangsbuch
+#: model:ir.model.fields,help:l10n_at_wareneingangsbuch.field_product_category__l10n_at_wareneingangsbuch_label
+msgid "Optional generic goods description for this category, for example 'KFZ-Ersatzteile'."
+msgstr "Optionale Sammelbezeichnung für diese Kategorie, zum Beispiel „KFZ-Ersatzteile“."
+
+#. module: l10n_at_wareneingangsbuch
+#: model:ir.model.fields,help:l10n_at_wareneingangsbuch.field_product_template__l10n_at_wareneingangsbuch_label
+msgid "Optional product-specific generic goods description. If empty, the category label is used."
+msgstr "Optionale produktspezifische Sammelbezeichnung. Wenn leer, wird die Bezeichnung der Kategorie verwendet."
+
+#. module: l10n_at_wareneingangsbuch
+#: model:ir.model.fields,field_description:l10n_at_wareneingangsbuch.field_l10n_at_wareneingangsbuch_report__sequence_number
+msgid "Lfd. Nr."
+msgstr "Lfd. Nr."
+
+#. module: l10n_at_wareneingangsbuch
+#: model:ir.model.fields,field_description:l10n_at_wareneingangsbuch.field_l10n_at_wareneingangsbuch_report__entry_date
+msgid "Tag des Waren-Eingangs / der Rechnungslegung"
+msgstr "Tag des Waren-Eingangs / der Rechnungslegung"
+
+#. module: l10n_at_wareneingangsbuch
+#: model:ir.model.fields,field_description:l10n_at_wareneingangsbuch.field_l10n_at_wareneingangsbuch_report__receipt_date
+msgid "Lieferdatum"
+msgstr "Lieferdatum"
+
+#. module: l10n_at_wareneingangsbuch
+#: model:ir.model.fields,field_description:l10n_at_wareneingangsbuch.field_l10n_at_wareneingangsbuch_report__invoice_date
+msgid "Rechnungsdatum"
+msgstr "Rechnungsdatum"
+
+#. module: l10n_at_wareneingangsbuch
+#: model:ir.model.fields,field_description:l10n_at_wareneingangsbuch.field_l10n_at_wareneingangsbuch_report__supplier_id
+#: model:ir.model.fields,field_description:l10n_at_wareneingangsbuch.field_l10n_at_wareneingangsbuch_report__supplier_name
+msgid "Lieferant"
+msgstr "Lieferant"
+
+#. module: l10n_at_wareneingangsbuch
+#: model:ir.model.fields,field_description:l10n_at_wareneingangsbuch.field_l10n_at_wareneingangsbuch_report__supplier_address
+msgid "Anschrift des Lieferanten"
+msgstr "Anschrift des Lieferanten"
+
+#. module: l10n_at_wareneingangsbuch
+#: model:ir.model.fields,field_description:l10n_at_wareneingangsbuch.field_l10n_at_wareneingangsbuch_report__supplier_display
+msgid "Name und Anschrift des Lieferanten"
+msgstr "Name und Anschrift des Lieferanten"
+
+#. module: l10n_at_wareneingangsbuch
+#: model:ir.model.fields,field_description:l10n_at_wareneingangsbuch.field_l10n_at_wareneingangsbuch_report__goods_label
+msgid "Produktbezeichnung"
+msgstr "Produktbezeichnung"
+
+#. module: l10n_at_wareneingangsbuch
+#: model:ir.model.fields,field_description:l10n_at_wareneingangsbuch.field_l10n_at_wareneingangsbuch_report__gross_amount
+msgid "Brutto Betrag"
+msgstr "Bruttobetrag"
+
+#. module: l10n_at_wareneingangsbuch
+#: model:ir.model.fields,field_description:l10n_at_wareneingangsbuch.field_l10n_at_wareneingangsbuch_report__tax_amount
+msgid "Vorsteuer"
+msgstr "Vorsteuer"
+
+#. module: l10n_at_wareneingangsbuch
+#: model:ir.model.fields,field_description:l10n_at_wareneingangsbuch.field_l10n_at_wareneingangsbuch_report__net_amount
+msgid "Netto Betrag"
+msgstr "Nettobetrag"
+
+#. module: l10n_at_wareneingangsbuch
+#: code:addons/l10n_at_wareneingangsbuch/report/wareneingangsbuch_report.py:0
+#: model:ir.model.fields,field_description:l10n_at_wareneingangsbuch.field_l10n_at_wareneingangsbuch_report__invoice_id
+msgid "Einkaufsrechnung"
+msgstr "Einkaufsrechnung"
+
+#. module: l10n_at_wareneingangsbuch
+#: model:ir.model.fields,field_description:l10n_at_wareneingangsbuch.field_l10n_at_wareneingangsbuch_report__invoice_line_id
+msgid "Rechnungszeile"
+msgstr "Rechnungszeile"
+
+#. module: l10n_at_wareneingangsbuch
+#: model:ir.model.fields,field_description:l10n_at_wareneingangsbuch.field_l10n_at_wareneingangsbuch_report__purchase_line_id
+msgid "Bestellzeile"
+msgstr "Bestellzeile"
+
+#. module: l10n_at_wareneingangsbuch
+#: model:ir.model.fields,field_description:l10n_at_wareneingangsbuch.field_l10n_at_wareneingangsbuch_report__product_id
+msgid "Produkt"
+msgstr "Produkt"
+
+#. module: l10n_at_wareneingangsbuch
+#: model:ir.model.fields,field_description:l10n_at_wareneingangsbuch.field_l10n_at_wareneingangsbuch_report__product_tmpl_id
+msgid "Produktvorlage"
+msgstr "Produktvorlage"
+
+#. module: l10n_at_wareneingangsbuch
+#: model:ir.model.fields,field_description:l10n_at_wareneingangsbuch.field_l10n_at_wareneingangsbuch_report__categ_id
+msgid "Produktkategorie"
+msgstr "Produktkategorie"
+
+#. module: l10n_at_wareneingangsbuch
+#: model:ir.model.fields,field_description:l10n_at_wareneingangsbuch.field_l10n_at_wareneingangsbuch_report__currency_id
+msgid "Waehrung"
+msgstr "Währung"
+
+#. module: l10n_at_wareneingangsbuch
+#: model:ir.model.fields,field_description:l10n_at_wareneingangsbuch.field_l10n_at_wareneingangsbuch_report__company_id
+msgid "Unternehmen"
+msgstr "Unternehmen"
+
+#. module: l10n_at_wareneingangsbuch
+#: model_terms:ir.ui.view,arch_db:l10n_at_wareneingangsbuch.view_l10n_at_wareneingangsbuch_report_search
+msgid "This Month"
+msgstr "Dieser Monat"
+
+#. module: l10n_at_wareneingangsbuch
+#: model_terms:ir.ui.view,arch_db:l10n_at_wareneingangsbuch.view_l10n_at_wareneingangsbuch_report_search
+msgid "Group by Supplier"
+msgstr "Nach Lieferant gruppieren"
+
+#. module: l10n_at_wareneingangsbuch
+#: model_terms:ir.ui.view,arch_db:l10n_at_wareneingangsbuch.view_l10n_at_wareneingangsbuch_report_search
+msgid "Group by Date"
+msgstr "Nach Datum gruppieren"
+
+#. module: l10n_at_wareneingangsbuch
+#: model_terms:ir.ui.view,arch_db:l10n_at_wareneingangsbuch.view_l10n_at_wareneingangsbuch_report_search
+msgid "Group by Goods"
+msgstr "Nach Waren gruppieren"
+
+#. module: l10n_at_wareneingangsbuch
+#: model_terms:ir.ui.view,arch_db:l10n_at_wareneingangsbuch.view_l10n_at_wareneingangsbuch_report_search
+msgid "Group by Category"
+msgstr "Nach Kategorie gruppieren"

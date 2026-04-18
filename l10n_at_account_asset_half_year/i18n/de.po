@@ -1,0 +1,65 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_at_account_asset_half_year
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-18 00:00+0000\n"
+"PO-Revision-Date: 2026-04-18 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_at_account_asset_half_year
+#: model:ir.module.module,shortdesc:l10n_at_account_asset_half_year.module_meta_information
+msgid "Austrian Asset Half-Year Depreciation"
+msgstr "Österreichische Halbjahres-AfA für Anlagen"
+
+#. module: l10n_at_account_asset_half_year
+#: model:ir.module.module,summary:l10n_at_account_asset_half_year.module_meta_information
+msgid "Adds Austrian half-year depreciation to account_asset_management"
+msgstr "Ergänzt die österreichische Halbjahres-AfA für account_asset_management"
+
+#. module: l10n_at_account_asset_half_year
+#: model:ir.model.fields,field_description:l10n_at_account_asset_half_year.field_account_asset__at_half_year_depreciation
+#: model:ir.model.fields,field_description:l10n_at_account_asset_half_year.field_account_asset_profile__at_half_year_depreciation
+msgid "Austrian Half-Year Depreciation"
+msgstr "Österreichische Halbjahres-AfA"
+
+#. module: l10n_at_account_asset_half_year
+#: model:ir.model.fields,help:l10n_at_account_asset_half_year.field_account_asset_profile__at_half_year_depreciation
+msgid "If enabled, assets that start in the second half of the fiscal year use Austrian half-year depreciation. The current implementation supports yearly linear depreciation only."
+msgstr "Wenn aktiviert, verwenden Anlagen mit Beginn in der zweiten Hälfte des Geschäftsjahres die österreichische Halbjahres-AfA. Die aktuelle Implementierung unterstützt nur lineare Jahresabschreibung."
+
+#. module: l10n_at_account_asset_half_year
+#: model:ir.model.fields,help:l10n_at_account_asset_half_year.field_account_asset__at_half_year_depreciation
+msgid "Technical flag derived from the asset profile. If enabled and the asset starts in the second half of the fiscal year, the first and last depreciation years are halved."
+msgstr "Technisches Kennzeichen, das aus dem Anlagenprofil übernommen wird. Wenn es aktiviert ist und die Anlage in der zweiten Hälfte des Geschäftsjahres beginnt, werden das erste und das letzte Abschreibungsjahr halbiert."
+
+#. module: l10n_at_account_asset_half_year
+#: code:addons/l10n_at_account_asset_half_year/models/account_asset.py:0
+#: code:addons/l10n_at_account_asset_half_year/models/account_asset_profile.py:0
+msgid "Austrian half-year depreciation only supports linear depreciation methods."
+msgstr "Die österreichische Halbjahres-AfA unterstützt nur lineare Abschreibungsmethoden."
+
+#. module: l10n_at_account_asset_half_year
+#: code:addons/l10n_at_account_asset_half_year/models/account_asset.py:0
+#: code:addons/l10n_at_account_asset_half_year/models/account_asset_profile.py:0
+msgid "Austrian half-year depreciation requires Time Method = Number of Years or end date."
+msgstr "Die österreichische Halbjahres-AfA erfordert Zeitmethode = Anzahl der Jahre oder Enddatum."
+
+#. module: l10n_at_account_asset_half_year
+#: code:addons/l10n_at_account_asset_half_year/models/account_asset.py:0
+#: code:addons/l10n_at_account_asset_half_year/models/account_asset_profile.py:0
+msgid "Austrian half-year depreciation currently requires Period Length = Year."
+msgstr "Die österreichische Halbjahres-AfA erfordert derzeit Periodenlänge = Jahr."
+
+#. module: l10n_at_account_asset_half_year
+#: code:addons/l10n_at_account_asset_half_year/models/account_asset.py:0
+msgid "Austrian half-year depreciation cannot be combined with Prorata Temporis."
+msgstr "Die österreichische Halbjahres-AfA kann nicht mit Prorata Temporis kombiniert werden."

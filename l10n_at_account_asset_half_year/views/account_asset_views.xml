@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_account_asset_form_at_half_year" model="ir.ui.view">
+        <field name="name">account.asset.form.at.half.year</field>
+        <field name="model">account.asset</field>
+        <field name="inherit_id" ref="account_asset_management.account_asset_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='prorata']" position="after">
+                <field
+                    name="at_half_year_depreciation"
+                    readonly="state in ['open', 'close', 'removed']"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
