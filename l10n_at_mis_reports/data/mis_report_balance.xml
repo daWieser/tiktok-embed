@@ -1,0 +1,938 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mis_report_at_balance" model="mis.report">
+        <field name="name">AT Bilanz (§ 224 UGB)</field>
+        <field name="style_id" ref="mis_template_financial_report.style_default" />
+    </record>
+
+    <record id="mis_kpi_at_balance_bal" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">bal</field>
+        <field name="description">Bilanzsumme (Aktiva - Passiva)</field>
+        <field name="expression">a - p</field>
+        <field name="style_id" ref="mis_template_financial_report.style_header" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">10</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_a" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">a</field>
+        <field name="description">Aktiva</field>
+        <field name="expression">aa + ab + ac + ad</field>
+        <field name="style_id" ref="mis_template_financial_report.style_header" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">20</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_aa" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">aa</field>
+        <field name="description">A. Anlagevermögen</field>
+        <field name="expression">aai + aaii + aaiii</field>
+        <field name="style_id" ref="mis_template_financial_report.style_header" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">30</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_aai" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">aai</field>
+        <field name="description">I. Immaterielle Vermögensgegenstände</field>
+        <field name="expression">aai1 + aai2 + aai3</field>
+        <field name="style_id" ref="mis_template_financial_report.style_header" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">40</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_aai1" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">aai1</field>
+        <field name="description">1. Konzessionen, gewerbliche Schutzrechte und ähnliche Rechte und Vorteile sowie daraus abgeleitete Lizenzen</field>
+        <field name="expression">bale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_AAI1').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">50</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_aai2" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">aai2</field>
+        <field name="description">2. Geschäfts(Firmen)wert</field>
+        <field name="expression">bale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_AAI2').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">60</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_aai3" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">aai3</field>
+        <field name="description">3. geleistete Anzahlungen</field>
+        <field name="expression">bale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_AAI3').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">70</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_aaii" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">aaii</field>
+        <field name="description">II. Sachanlagen</field>
+        <field name="expression">aaii1 + aaii2 + aaii3 + aaii4</field>
+        <field name="style_id" ref="mis_template_financial_report.style_header" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">80</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_aaii1" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">aaii1</field>
+        <field name="description">1. Grundstücke, grundstücksgleiche Rechte und Bauten, einschließlich der Bauten auf fremdem Grund</field>
+        <field name="expression">bale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_AAII1').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">90</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_aaii2" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">aaii2</field>
+        <field name="description">2. technische Anlagen und Maschinen</field>
+        <field name="expression">bale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_AAII2').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">100</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_aaii3" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">aaii3</field>
+        <field name="description">3. andere Anlagen, Betriebs- und Geschäftsausstattung</field>
+        <field name="expression">bale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_AAII3').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">110</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_aaii4" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">aaii4</field>
+        <field name="description">4. geleistete Anzahlungen und Anlagen in Bau</field>
+        <field name="expression">bale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_AAII4').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">120</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_aaiii" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">aaiii</field>
+        <field name="description">III. Finanzanlagen</field>
+        <field name="expression">aaiii1 + aaiii2 + aaiii3 + aaiii4 + aaiii5 + aaiii6</field>
+        <field name="style_id" ref="mis_template_financial_report.style_header" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">130</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_aaiii1" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">aaiii1</field>
+        <field name="description">1. Anteile an verbundenen Unternehmen</field>
+        <field name="expression">bale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_AAIII1').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">140</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_aaiii2" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">aaiii2</field>
+        <field name="description">2. Ausleihungen an verbundene Unternehmen</field>
+        <field name="expression">bale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_AAIII2').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">150</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_aaiii3" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">aaiii3</field>
+        <field name="description">3. Beteiligungen</field>
+        <field name="expression">bale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_AAIII3').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">160</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_aaiii4" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">aaiii4</field>
+        <field name="description">4. Ausleihungen an Unternehmen, mit denen ein Beteiligungsverhältnis besteht</field>
+        <field name="expression">bale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_AAIII4').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">170</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_aaiii5" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">aaiii5</field>
+        <field name="description">5. Wertpapiere (Wertrechte) des Anlagevermögens</field>
+        <field name="expression">bale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_AAIII5').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">180</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_aaiii6" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">aaiii6</field>
+        <field name="description">6. sonstige Ausleihungen</field>
+        <field name="expression">bale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_AAIII6').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">190</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_ab" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">ab</field>
+        <field name="description">B. Umlaufvermögen</field>
+        <field name="expression">abi + abii + abiii + abiv</field>
+        <field name="style_id" ref="mis_template_financial_report.style_header" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">200</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_abi" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">abi</field>
+        <field name="description">I. Vorräte</field>
+        <field name="expression">abi1 + abi2 + abi3 + abi4 + abi5</field>
+        <field name="style_id" ref="mis_template_financial_report.style_header" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">210</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_abi1" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">abi1</field>
+        <field name="description">1. Roh-, Hilfs- und Betriebsstoffe</field>
+        <field name="expression">bale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_ABI1').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">220</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_abi2" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">abi2</field>
+        <field name="description">2. unfertige Erzeugnisse</field>
+        <field name="expression">bale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_ABI2').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">230</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_abi3" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">abi3</field>
+        <field name="description">3. fertige Erzeugnisse und Waren</field>
+        <field name="expression">bale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_ABI3').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">240</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_abi4" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">abi4</field>
+        <field name="description">4. noch nicht abrechenbare Leistungen</field>
+        <field name="expression">bale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_ABI4').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">250</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_abi5" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">abi5</field>
+        <field name="description">5. geleistete Anzahlungen</field>
+        <field name="expression">bale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_ABI5').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">260</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_abii" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">abii</field>
+        <field name="description">II. Forderungen und sonstige Vermögensgegenstände</field>
+        <field name="expression">abii1 + abii2 + abii3 + abii4</field>
+        <field name="style_id" ref="mis_template_financial_report.style_header" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">270</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_abii1" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">abii1</field>
+        <field name="description">1. Forderungen aus Lieferungen und Leistungen</field>
+        <field name="expression">bale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_ABII1').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">280</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_abii2" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">abii2</field>
+        <field name="description">2. Forderungen gegenüber verbundenen Unternehmen</field>
+        <field name="expression">bale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_ABII2').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">290</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_abii3" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">abii3</field>
+        <field name="description">3. Forderungen gegenüber Unternehmen, mit denen ein Beteiligungsverhältnis besteht</field>
+        <field name="expression">bale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_ABII3').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">300</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_abii4" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">abii4</field>
+        <field name="description">4. sonstige Forderungen und Vermögensgegenstände</field>
+        <field name="expression">pbale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_ABII4').id)] +pbale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_PCVII').id)] +pbale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_PCVIII3').id)] +pbale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_PCVIII4').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">310</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_abiii" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">abiii</field>
+        <field name="description">III. Wertpapiere und Anteile</field>
+        <field name="expression">abiii1 + abiii2</field>
+        <field name="style_id" ref="mis_template_financial_report.style_header" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">320</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_abiii1" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">abiii1</field>
+        <field name="description">1. Anteile an verbundenen Unternehmen</field>
+        <field name="expression">bale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_ABIII1').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">330</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_abiii2" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">abiii2</field>
+        <field name="description">2. sonstige Wertpapiere und Anteile</field>
+        <field name="expression">bale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_ABIII2').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">340</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_abiv" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">abiv</field>
+        <field name="description">IV. Kassenbestand, Guthaben bei Kreditinstituten</field>
+        <field name="expression">pbale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_ABIV').id)] +pbale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_PCII').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">350</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_ac" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">ac</field>
+        <field name="description">C. Rechnungsabgrenzungsposten</field>
+        <field name="expression">bale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_AC').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">360</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_ad" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">ad</field>
+        <field name="description">D. Aktive latente Steuern</field>
+        <field name="expression">bale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_AD').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">370</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_p" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">p</field>
+        <field name="description">Passiva</field>
+        <field name="expression">pa + pb + pc + pd</field>
+        <field name="style_id" ref="mis_template_financial_report.style_header" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">380</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_pa" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">pa</field>
+        <field name="description">A. Eigenkapital</field>
+        <field name="expression">pai + paii + paiii + paiv</field>
+        <field name="style_id" ref="mis_template_financial_report.style_header" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">390</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_pai" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">pai</field>
+        <field name="description">I. eingefordertes Stammkapital</field>
+        <field name="expression">-bale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_PAI').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">400</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_paii" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">paii</field>
+        <field name="description">II. Kapitalrücklagen</field>
+        <field name="expression">paii1 + paii2</field>
+        <field name="style_id" ref="mis_template_financial_report.style_header" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">410</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_paii1" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">paii1</field>
+        <field name="description">1. gebundene Kapitalanlagen</field>
+        <field name="expression">-bale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_PAII1').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">420</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_paii2" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">paii2</field>
+        <field name="description">2. nicht gebundene Kapitalanlagen</field>
+        <field name="expression">-bale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_PAII2').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">430</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_paiii" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">paiii</field>
+        <field name="description">III. Gewinnrücklagen</field>
+        <field name="expression">paiii1 + paiii2 + paiii3</field>
+        <field name="style_id" ref="mis_template_financial_report.style_header" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">440</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_paiii1" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">paiii1</field>
+        <field name="description">1. gesetzliche Rücklage</field>
+        <field name="expression">-bale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_PAIII1').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">450</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_paiii2" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">paiii2</field>
+        <field name="description">2. satzungsmäßige Rücklagen</field>
+        <field name="expression">-bale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_PAIII2').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">460</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_paiii3" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">paiii3</field>
+        <field name="description">3. andere Rücklagen (freie Rücklagen)</field>
+        <field name="expression">-bale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_PAIII3').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">470</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_paiv" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">paiv</field>
+        <field name="description">IV. Bilanzgewinn (Bilanzverlust)</field>
+        <field name="expression">-bale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_PAIV').id)] - bale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_RL').id)]</field>
+        <field name="style_id" ref="mis_template_financial_report.style_header" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">480</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_paiv1" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">paiv1</field>
+        <field name="description">davon Gewinnvortrag / Verlustvortrag</field>
+        <field name="expression">-bale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_RL').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">490</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_pacy" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">pacy</field>
+        <field name="description">Gewinn/Verlust aus dem aktuellen Jahr</field>
+        <field name="expression">paiv - paiv1</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">500</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_pb" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">pb</field>
+        <field name="description">B. Rückstellungen</field>
+        <field name="expression">pbi + pbii + pbiii + pbiv</field>
+        <field name="style_id" ref="mis_template_financial_report.style_header" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">510</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_pbi" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">pbi</field>
+        <field name="description">I. Rückstellungen für Abfertigungen</field>
+        <field name="expression">-bale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_PBI').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">520</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_pbii" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">pbii</field>
+        <field name="description">II. Rückstellungen für Pensionen</field>
+        <field name="expression">-bale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_PBII').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">530</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_pbiii" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">pbiii</field>
+        <field name="description">III. Steuerrückstellungen</field>
+        <field name="expression">-bale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_PBIII').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">540</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_pbiv" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">pbiv</field>
+        <field name="description">IV. sonstige Rückstellungen</field>
+        <field name="expression">-bale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_PBIV').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">550</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_pc" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">pc</field>
+        <field name="description">C. Verbindlichkeiten</field>
+        <field name="expression">pci + pcii + pciii + pciv + pcv + pcvi + pcvii + pcviii</field>
+        <field name="style_id" ref="mis_template_financial_report.style_header" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">560</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_pci" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">pci</field>
+        <field name="description">I. Anleihen, davon konvertibel</field>
+        <field name="expression">-bale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_PCI').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">570</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_pcii" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">pcii</field>
+        <field name="description">II. Verbindlichkeiten gegenüber Kreditinstituten</field>
+        <field name="expression">-nbale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_PCII').id)] -nbale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_ABIV').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">580</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_pciii" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">pciii</field>
+        <field name="description">III. erhaltene Anzahlungen auf Bestellungen</field>
+        <field name="expression">-bale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_PCIII').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">590</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_pciv" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">pciv</field>
+        <field name="description">IV. Verbindlichkeiten aus Lieferungen und Leistungen</field>
+        <field name="expression">-bale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_PCIV').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">600</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_pcv" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">pcv</field>
+        <field name="description">V. Verbindlichkeiten aus der Annahme gezogener Wechsel und der Ausstellung eigener Wechsel</field>
+        <field name="expression">-bale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_PCV').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">610</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_pcvi" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">pcvi</field>
+        <field name="description">VI. Verbindlichkeiten gegenüber verbundenen Unternehmen</field>
+        <field name="expression">-bale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_PCVI').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">620</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_pcvii" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">pcvii</field>
+        <field name="description">VII. Verbindlichkeiten gegenüber Unternehmen, mit denen ein Beteiligungsverhältnis besteht</field>
+        <field name="expression">-nbale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_PCVII').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">630</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_pcviii" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">pcviii</field>
+        <field name="description">VIII. sonstige Verbindlichkeiten</field>
+        <field name="expression">pcviii3 + pcviii4</field>
+        <field name="style_id" ref="mis_template_financial_report.style_header" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">640</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_pcviii1" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">pcviii1</field>
+        <field name="description">davon aus Steuern</field>
+        <field name="expression">-nbale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_ABII4').id)] -nbale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_PCVIII1').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">650</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_pcviii2" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">pcviii2</field>
+        <field name="description">davon im Rahmen der sozialen Sicherheit</field>
+        <field name="expression">-nbale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_PCVIII2').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">660</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_pcviii3" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">pcviii3</field>
+        <field name="description">davon mit einer Restlaufzeit von bis zu einem Jahr</field>
+        <field name="expression">-nbale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_PCVIII3').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">670</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_pcviii4" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">pcviii4</field>
+        <field name="description">davon mit einer Restlaufzeit von mehr als einem Jahr</field>
+        <field name="expression">-nbale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_PCVIII4').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">680</field>
+    </record>
+
+    <record id="mis_kpi_at_balance_pd" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="name">pd</field>
+        <field name="description">D. Rechnungnsabgrenzungsposten</field>
+        <field name="expression">-bale[('tag_ids', '=', ref('l10n_at.account_tag_l10n_at_PD').id)]</field>
+        <field name="auto_expand_accounts">True</field>
+        <field name="auto_expand_accounts_style_id" ref="mis_template_financial_report.style_details" />
+        <field name="style_id" ref="mis_template_financial_report.style_details" />
+        <field name="type">num</field>
+        <field name="compare_method">diff</field>
+        <field name="accumulation_method">sum</field>
+        <field name="sequence">690</field>
+    </record>
+
+</odoo>

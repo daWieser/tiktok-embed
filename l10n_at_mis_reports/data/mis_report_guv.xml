@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mis_instance_at_profit_loss" model="mis.report.instance">
+        <field name="name">AT GuV - Monatlich</field>
+        <field name="report_id" ref="mis_report_at_profit_loss" />
+        <field name="comparison_mode" eval="True" />
+    </record>
+
+    <record id="mis_period_at_profit_loss_current_month" model="mis.report.instance.period">
+        <field name="name">Aktueller Monat</field>
+        <field name="report_instance_id" ref="mis_instance_at_profit_loss" />
+        <field name="source">actuals</field>
+        <field name="mode">relative</field>
+        <field name="type">m</field>
+        <field name="offset">0</field>
+        <field name="duration">1</field>
+        <field name="sequence">10</field>
+    </record>
+
+    <record id="mis_period_at_profit_loss_previous_month" model="mis.report.instance.period">
+        <field name="name">Vormonat</field>
+        <field name="report_instance_id" ref="mis_instance_at_profit_loss" />
+        <field name="source">actuals</field>
+        <field name="mode">relative</field>
+        <field name="type">m</field>
+        <field name="offset">-1</field>
+        <field name="duration">1</field>
+        <field name="sequence">20</field>
+    </record>
+
+    <record id="mis_instance_at_balance" model="mis.report.instance">
+        <field name="name">AT Bilanz - Jahr</field>
+        <field name="report_id" ref="mis_report_at_balance" />
+        <field name="comparison_mode" eval="True" />
+    </record>
+
+    <record id="mis_period_at_balance_current_year" model="mis.report.instance.period">
+        <field name="name">Aktuelles Jahr</field>
+        <field name="report_instance_id" ref="mis_instance_at_balance" />
+        <field name="source">actuals</field>
+        <field name="mode">relative</field>
+        <field name="type">y</field>
+        <field name="offset">0</field>
+        <field name="duration">1</field>
+        <field name="sequence">10</field>
+    </record>
+
+    <record id="mis_period_at_balance_previous_year" model="mis.report.instance.period">
+        <field name="name">Vorjahr</field>
+        <field name="report_instance_id" ref="mis_instance_at_balance" />
+        <field name="source">actuals</field>
+        <field name="mode">relative</field>
+        <field name="type">y</field>
+        <field name="offset">-1</field>
+        <field name="duration">1</field>
+        <field name="sequence">20</field>
+    </record>
+</odoo>
