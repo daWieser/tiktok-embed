@@ -15,7 +15,7 @@ inside MIS Builder so it can be exported to Excel or PDF.
 """,
     "author": "Vorstieg Software FlexCo",
     "website": "https://www.vorstieg.eu",
-    "license": "LGPL-3",
+    "license": "AGPL-3",
     "depends": [
         "l10n_at",
         "mis_builder",
