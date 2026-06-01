@@ -1,8 +1,7 @@
 {
     'name': 'Invoice Delivery Period',
-    'version': '1.0',
-    'summary': 'Adds an optional delivery period to an invoice wich replaces the delivery date.',
-    'summary_de': 'Fügt einen optionale Lieferzeitraum zu Rechnungen hinzu welche das Lieferdatum ersetzt.',
+    'version': '19.0.1.0',
+    'summary': 'Adds an optional delivery period to an invoice which replaces the delivery date.',
     'author': 'Vorstieg Software FlexCo',
     'website': 'https://www.vorstieg.eu',
     'category': 'Accounting',
@@ -14,7 +13,4 @@
     'installable': True,
     'license': 'LGPL-3',
     'images': ['images/thumbnail.png'],
-    'i18n': {
-        'de': 'i18n/de.po',
-    },
 }

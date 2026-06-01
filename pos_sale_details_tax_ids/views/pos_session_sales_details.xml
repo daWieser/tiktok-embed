@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="pos_session_sales_details_tax_ids" inherit_id="point_of_sale.pos_session_sales_details">
+        <!-- Sales: category header -->
+        <xpath expr="//div[@id='sales']//tr[@t-foreach='products']/td[@class='text-end fw-bold']/span[@t-out=&quot;category['qty']&quot;]/.." position="after">
+            <td class="text-end fw-bold">Tax</td>
+        </xpath>
+        <!-- Sales: product lines -->
+        <xpath expr="//div[@id='sales']//tr[@t-foreach=&quot;category['products']&quot;]/td[span[@t-out=&quot;line['quantity']&quot;]]" position="after">
+            <td class="text-end">
+                <span t-out="line['tax_id']"/>
+            </td>
+        </xpath>
+        <!-- Sales: total row -->
+        <xpath expr="//div[@id='sales']//tr[.//span[@t-out=&quot;products_info['qty']&quot;]]/td[last()]" position="before">
+            <td/>
+        </xpath>
+
+        <!-- Refunds: category header -->
+        <xpath expr="//div[@id='refunds']//tr[@t-foreach='refund_products']/td[@class='text-end fw-bold']/span[@t-out=&quot;category['qty']&quot;]/.." position="after">
+            <td class="text-end fw-bold">Tax</td>
+        </xpath>
+        <!-- Refunds: product lines -->
+        <xpath expr="//div[@id='refunds']//tr[@t-foreach=&quot;category['products']&quot;]/td[span[@t-out=&quot;line['quantity']&quot;]]" position="after">
+            <td class="text-end">
+                <span t-out="line['tax_id']"/>
+            </td>
+        </xpath>
+        <!-- Refunds: total row -->
+        <xpath expr="//div[@id='refunds']//tr[.//span[@t-out=&quot;refund_info['qty']&quot;]]/td[last()]" position="before">
+            <td/>
+        </xpath>
+    </template>
+</odoo>

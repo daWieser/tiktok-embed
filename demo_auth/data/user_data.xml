@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Create the Demo User -->
+        <record id="user_demo_auto" model="res.users">
+            <field name="name">Demo User</field>
+            <field name="login">demo</field>
+            <field name="password">demo</field>
+            <field name="active" eval="True"/>
+        </record>
+    </data>
+</odoo>
