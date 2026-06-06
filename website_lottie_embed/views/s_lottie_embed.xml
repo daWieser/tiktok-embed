@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="s_lottie_embed" name="Lottie Animation">
+        <div class="s_lottie_embed o_snippet_drop_in_only"
+             data-lottie-embed="https://assets1.lottiefiles.com/packages/lf20_jcikwtux.json"
+             data-speed="1"
+             data-loop="true"
+             data-autoplay="true">
+            <div class="o_lottie_container">
+                <!-- src is set by JS via player.load() to avoid autoload errors on drop -->
+                <lottie-player class="o_not_editable"
+                               background="transparent"
+                               width="100%"
+                               height="100%"/>
+            </div>
+        </div>
+    </template>
+
+</odoo>
